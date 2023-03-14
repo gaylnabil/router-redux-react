@@ -1,5 +1,7 @@
 import React from 'react'
+// import { useSelector } from 'react-redux'
 
+// pass parameters with props.
 function Product(props) {
     return (
         <div className="row">
@@ -18,5 +20,6 @@ function Product(props) {
         </div>
     )
 }
+
 
 export default Product
