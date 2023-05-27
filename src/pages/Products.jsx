@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProduct, clearProductSelected } from './../redux/slices/ProductSlice.js'
+import { clearProductSelectedAndInitCounter } from '../redux/actions/action.js';
 import Product from '../components/Product.jsx';
 
 const Products = () => {
@@ -61,7 +62,7 @@ const Products = () => {
                     <button
                         type="button"
                         className="btn btn-warning "
-                        onClick={() => { dispatch(clearProductSelected()) }}
+                        onClick={() => { dispatch(clearProductSelectedAndInitCounter()) }}
                     >
                         Reset all</button>
                 </div>

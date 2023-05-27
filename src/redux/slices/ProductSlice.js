@@ -1,30 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { clearProductSelectedAndInitCounter } from "../actions/action";
 const initialState = () => {
-  /*
-    Initialize the state of the store.
-
-    Parameters
-    ----------
-    None
-
-    Returns
-    -------
-    Object
-        Return the state of the store.
-    */
   return {
     products: [
-      /*
-        list of products.
-        */
       {
         id: 1,
         name: "Dell precision 5570",
         description:
-          /*
-            15 workstation with 4-sided InfinityEdge display, Dell Optimizer for Precision and up to 12th Gen Intel® Core™ i9 and NVIDIA RTX™ A2000 graphics.
-            */
           "15 workstation with 4-sided InfinityEdge display, Dell Optimizer for Precision and up to 12th Gen Intel® Core™ i9 and NVIDIA RTX™ A2000 graphics.",
         price: 2049,
       },
@@ -32,9 +14,6 @@ const initialState = () => {
         id: 2,
         name: "Dell Latitude 7480",
         description:
-          /*
-            This 14 business-class laptop is incredibly mobile without compromise. Featuring industry leading security, manageability and reliability.
-            */
           "This 14 business-class laptop is incredibly mobile without compromise. Featuring industry leading security, manageability and reliability.",
         price: 1600,
       },
@@ -42,9 +21,6 @@ const initialState = () => {
         id: 3,
         name: "HP Pavilion Laptop 15t-eg200",
         description:
-          /*
-            Windows 11 HomeIntel® Core™ i7-1255U (up to 4.7 GHz, 12 MB L3 cache, 10 cores, 12 threads) + Intel® Iris® Xe Graphics16 GB DDR4-3200 SDRAM (2 x 8 GB)512 GB PCIe® NVMe™ M.2 SSD
-            */
           "Windows 11 HomeIntel® Core™ i7-1255U (up to 4.7 GHz, 12 MB L3 cache, 10 cores, 12 threads) + Intel® Iris® Xe Graphics16 GB DDR4-3200 SDRAM (2 x 8 GB)512 GB PCIe® NVMe™ M.2 SSD",
         price: 1850,
       },
@@ -52,9 +28,6 @@ const initialState = () => {
         id: 4,
         name: "MSI STEALTH 15M",
         description:
-          /*
-            11th Generation Intel® Core™i7-1185G7 processor 16GB RAM 15.6“ Full HD (1920×1080), 144 Hz Refresh Rate GeForce® RTX 2060 Max-Q 6GB GDDR6 512GB SSD Air Gaming Backpack
-            */
           "11th Generation Intel® Core™i7-1185G7 processor 16GB RAM 15.6“ Full HD (1920×1080), 144 Hz Refresh Rate GeForce® RTX 2060 Max-Q 6GB GDDR6 512GB SSD Air Gaming Backpack",
         price: 2359,
       },
@@ -82,9 +55,17 @@ const productSlice = createSlice({
     getProduct: (state, action) => {
       state.productSelected = action.payload;
     },
-    clearProductSelected: (state) => {
+    clearProductSelected: (state, action) => {
+      console.log("Product Action:", action);
       state.productSelected = null;
     },
+  },
+  // extraReducers: Custom Action Reducer, means call Reducer from another Slice File.
+  extraReducers: (builder) => {
+    builder.addCase(clearProductSelectedAndInitCounter, (state, action) => {
+      // clearProductSelected(state, action);
+      state.productSelected = null;
+    });
   },
 });
 
